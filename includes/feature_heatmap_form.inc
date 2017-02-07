@@ -3,15 +3,15 @@
 function feature_heatmap_form($form, &$form_state){
   $form['descriptions'] = array(
     '#type' => 'item',
-    '#markup' => t('<b>Feature unique names need to be separated by comma(,).</b>')
+    '#markup' => t('<b>Feature unique names need to be separated by comma or space or newline.</b>')
   );
 
   $form['heatmap_feature_uniquename'] = array(
     '#type' => 'textarea',
     '#title' => t('Enter feature unique names'),
-    '#description' => t('<b>Example feature unique names:</b> Juglans_nigra_120313_comp34229_c0_seq1 ,Quercus_rubra_120313_comp31392_c0_seq1, Acer_saccharum_022416_comp57075_c0_seq8, Liquidambar_styraciflua_01052015_comp34573_c0_seq2,Fraxinus_pennsylvanica_120313_comp50845_c0_seq2, Nyssa_sylvatica_10132014_comp27824_c0_seq1, Quercus_rubra_120313_comp13209_c0_seq1'),
+    '#description' => t('<b>Example feature unique names:</b>  SMED30001362 SMED30007406 SMED30014446'),
     '#attributes' => array(
-      'placeholder' => t('Nyssa_sylvatica_10132014_comp23154_c0_seq12_m.8255, Quercus_rubra_120313_comp172643_c0_seq1_m.37896, Liriodendron_tulipifera_10132014_comp16064_c0_seq1'),
+      'placeholder' => t('SMED30001362 SMED30007406 SMED30014446'),
     ),
   );
 
@@ -149,7 +149,7 @@ function feature_heatmap_form_submit($form, &$form_state){
     }
 
     // use the max id length times 8 to get an appropriate pixel number for left margin
-    $_SESSION['left_margin'] = $max_id_len * 8;
+    $_SESSION['left_margin'] = $max_id_len * 10;
     // use the max length of treatment name times 7 to get an appropriate pixel number of bottom margin
     $_SESSION['bottom_margin'] = $max_treatment_name * 9;
 
