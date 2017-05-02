@@ -789,7 +789,9 @@ function tripal_analysis_expression_block_view($delta = ''){
     case 'heatmap_features':
       if(!empty($_SESSION['heatmap_data'])){
         $block['subject'] = t('Feature Expression Heatmap');
-        $block['content'] = '<div id="vis_expression"></div>' . '<a href="' . $_SESSION['downloadLink'] . '">Download CSV</a>';
+        if (  preg_match('/feature_id=\d+/',  $_SESSION['downloadLink'] )){
+           $block['content'] = '<div id="vis_expression"></div>' . '<a href="' . $_SESSION['downloadLink'] . '">Download CSV File</a>';
+        }
         drupal_add_js(array('tripal_analysis_expression' => array('heatmap_data' => $_SESSION['heatmap_data'])), array('type' => 'setting'));
         drupal_add_js(array('tripal_analysis_expression' => array('left_margin' => $_SESSION['left_margin'])), array('type' => 'setting'));
         drupal_add_js(array('tripal_analysis_expression' => array('bottom_margin' => $_SESSION['bottom_margin'])), array('type' => 'setting'));
